@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: your_rabbitmq_username
+    password: your_rabbitmq_password
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      password: your_redis_password
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          min-idle: 1
+          time-between-eviction-runs: 10s
+
+logging:
+  level:
+    root: INFO
+    com.yourpackage: DEBUG
+
+mybatis-plus:
+    type-aliases-package: com.yourpackage.entity
+
+#
+#security:
+#  oauth2:
+#    client:
+#      registration:
+#        your-client:
+#          client-id: your-client-id
+#          client-secret: your-client-secret
+#          scope: read,write
+#          authorization-grant-type: authorization_code
+#          redirect-uri: http://localhost:8080/login/oauth2/code/your-client
+#      provider:
+#        your-provider:
+#          authorization-uri: http://localhost:8080/oauth/authorize
+#          token-uri: http://localhost:8080/oauth/token
+#          user-info-uri: http://localhost:8080/userinfo
+#          user-name-attribute: id
